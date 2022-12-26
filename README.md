@@ -21,7 +21,7 @@ make
 ## Installing
 
 ```
-make install`
+make install
 cp /usr/local/lib64/libjson-c.so.5 $PGDATA/../lib
 ```
 
