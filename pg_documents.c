@@ -1330,17 +1330,11 @@ pg_documents_respond(struct pg_documents_context *pgdc, int sockfd)
 /*
  * Entry point of this module.
  *
- * We register more than one worker process here, to demonstrate how that can
- * be done.
  */
 void
 _PG_init(void)
 {
 	BackgroundWorker worker;
-
-	/* get the configuration */
-	if (!process_shared_preload_libraries_in_progress)
-		return;
 
 	DefineCustomStringVariable("pg_documents.database",
 			"Database to connect to.",
@@ -1401,11 +1395,12 @@ _PG_init(void)
 	sprintf(worker.bgw_function_name, "pg_documents_main");
 	// worker.bgw_main = pg_documents_main;
 	strncpy(worker.bgw_name, "pg_documents", BGW_MAXLEN);
+	worker.bgw_notify_pid = 0;
 	worker.bgw_main_arg = 0;
 
 #if PG_VERSION_NUM >= 110000
 	snprintf(worker.bgw_type, BGW_MAXLEN, "pg_documents");
 #endif
 
-	RegisterBackgroundWorker(&worker);
+	RegisterBackgroundWorker(&worker) ;
 }

@@ -1,0 +1,5 @@
+# pg_documents postgresql extension
+comment = 'JSON access via HTTP server'
+default_version = '1.0.0'
+module_pathname = '$libdir/pg_documents'
+relocatable = false

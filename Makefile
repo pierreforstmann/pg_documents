@@ -1,5 +1,6 @@
 MODULE_big = pg_documents
-OBJS = pg_documents.o
+EXTENSION = pg_documents
+OBJS = pg_documents.o 
 SHLIB_LINK += -ljson-c
 
 PG_CONFIG = pg_config
