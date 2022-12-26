@@ -16,5 +16,5 @@ find . -name '*.[ch]' -exec sed -i 's,struct json_object),struct json_object_s),
 ```
 ## Installing
 
-Copy manually `libjson-c.so.5` to `$PGDATA/../lib'.
+cp /usr/local/lib64/libjson-c.so.5 $PGDATA/../lib
 
