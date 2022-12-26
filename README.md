@@ -14,7 +14,25 @@ find . -name '*.[ch]' -exec sed -i 's,json_object;,json_object_s; ,g'  {} \;
 find . -name '*.[ch]' -exec sed -i 's,struct json_object$,struct json_object_s,g'  {} \;
 find . -name '*.[ch]' -exec sed -i 's,struct json_object),struct json_object_s),g'  {} \;
 ```
+Build the extension:
+```
+make
+```
 ## Installing
 
-`cp /usr/local/lib64/libjson-c.so.5 $PGDATA/../lib`
+```
+make install`
+cp /usr/local/lib64/libjson-c.so.5 $PGDATA/../lib
+```
 
+Add to postgresql.conf:
+```
+shared_preload_libraries='pg_documents'
+pg_documents.database = 'pierre'
+pg_documents.port='8000'
+```
+Restart PG instance:
+```
+pg_ctl stop
+pg_ctl start
+```
